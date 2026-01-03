@@ -78,19 +78,29 @@ def reload_devices():
 
 @app.post("/api/check")
 def check():
-    timeout_ms = int(request.args.get("timeout_ms","800"))
+    timeout_ms = int(request.args.get("timeout_ms", "800"))
     results = {}
-
 
     for d in STATE["devices"]:
         ip = d.get("ip")
-        if not ip: continue
-        alive, rtt = ping_once (ip, timeout_ms=timeout_ms)
-        results[ip] = {"alive": alive, "rtt_ms":rtt, "checked_at":int(time.time())}
+        if not ip:
+            continue
 
-        STATE["status"] = results
-        STATE["last_check"] = int(time.time())
-        return jsonify({"ok":True, "checked":len(results), "status": results})
+        alive, rtt = ping_once(ip, timeout_ms=timeout_ms)
+        results[ip] = {
+            "alive": alive,
+            "rtt_ms": rtt,
+            "checked_at": int(time.time())
+        }
+
+    STATE["status"] = results
+    STATE["last_check"] = int(time.time())
+
+    return jsonify({
+        "ok": True,
+        "checked": len(results),
+        "status": results
+    })
 
 
 @app.get("/api/status")
