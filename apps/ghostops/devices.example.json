@@ -1,9 +1,10 @@
 [
 	{
-	"name": "Derll precision", "ip":"192.168.0.10", "tags":[
+	"name": "Dell precision 7560", "ip":"192.168.0.10", "tags":[
 	"laptop", "main"]
 	},
-	{"name": "Router", "ip":"192.168.1.1", "tags":["router"]
+	{"name": "Router", "ip":"192.168.69.1", "tags":["router"]
 	},
 	{"name":"SMC_Honeypot", "ip":"192.168.1.50", "tags": ["router", "honeypot"]},
 	{"name":"NAS ds223", "ip":"192.168.1.60", "tags":["nas"]}
+]

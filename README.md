@@ -8,6 +8,7 @@ GhostOps is a local-first homelab status panel designed to give fast visibility 
 - Cross-platform ping checks for device status (UP/DOWN) and latency
 - Simple LAN-accessible web UI
 - Live status refresh and RTT measurement
+- Service and port checks (TCP/HTTP)
 
 ### Demo
 ![GhostOps v0.1](demos/ghostops-v0.1.png)
@@ -60,6 +61,32 @@ You can override this path using an environment variable:
 ```
 GHOSTOPS_DEVICES=/path/to/devices.json
 ```
+### Service configuration
+Similar to devices, services are defined in a JSON file:
+```json
+[
+	{
+		"name":"Router Admin",
+		"host":"192.168.69.1",
+		"port":80,
+		"type":"http"
+	},
+	{
+		"name":"JellyFin",
+		"host":"192.168.1.60",
+		"port":"8096",
+		"type":"tcp"
+	}
+]
+```
+By default, GhostOps loads:
+```
+apps/ghostops/services/example.json
+```
+You can override this path using an environment variable:
+```
+GHOSTOPS_SERVICES=/path/to/services.json
+```
 
 ### Web interface
 - **Reload devices**  
@@ -110,3 +137,4 @@ ghostlab/
 
 ## License
 See [LICENSE](LICENSE).
+
